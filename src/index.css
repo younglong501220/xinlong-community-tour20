@@ -122,18 +122,75 @@
 
 /* Print optimizations */
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+
+  /* When printing from modal, hide the main page behind it */
+  body.export-pdf-modal-open header,
+  body.export-pdf-modal-open footer,
+  body.export-pdf-modal-open main,
   header, footer, .no-print {
     display: none !important;
   }
-  main {
-    padding-top: 0 !important;
-  }
+
   body {
     background: white !important;
-    color: black !important;
+    color: #001f28 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
+
+  /* Remove all fixed position constraints and scrollbars */
+  body.export-pdf-modal-open {
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .export-pdf-backdrop {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    display: block !important;
+    backdrop-filter: none !important;
+    overflow: visible !important;
+    height: auto !important;
+    width: 100% !important;
+    inset: auto !important;
+    z-index: auto !important;
+  }
+
+  .export-pdf-dialog {
+    position: static !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .print-document-content {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .print-break-inside-avoid, tr, table {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
   .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl {
     box-shadow: none !important;
-    border: 1px solid #e2e8f0 !important;
   }
 }
